@@ -12,35 +12,38 @@ const App = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [currentDifficulty, setDifficulty] = useState("");
   const [id, setID] = useState("");
-  const [editing, setEdit] = useState("false");
+  const [editing, setEdit] = useState(false);
 
   const getUsers = async () => {
     const users = await api.get("/");
     return users;
   };
+  const getData = async () => {
+    try {
+      const users = await getUsers();
+      setData(users.data || []);
+    } catch (e) {
+      console.error(e.response);
+    }
+  };
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const users = await getUsers();
-        setData(users.data);
-      } catch (e) {
-        console.error(e.response);
-      }
-    };
     getData();
   }, [filteredData]);
   const search = (e) => {
     if (e.target.value === "") setFilteredData([]);
-    else
+    else if (data.length > 0)
       setFilteredData(
         data.filter((item) =>
           item.name.toLowerCase().includes(e.target.value.toLowerCase())
         )
       );
   };
+  const setupEdit = (bool) => {
+    setEdit(bool);
+  };
   return (
     <BrowserRouter>
-      <Header setEdit={setEdit} />
+      <Header setEdit={setupEdit} />
       <Route path="/" exact>
         <HomePage data={data} search={search} filteredData={filteredData} />
       </Route>
@@ -49,10 +52,9 @@ const App = () => {
           data={data}
           editID={id}
           editing={editing}
-          setEdit={setEdit}
+          setEdit={setupEdit}
         />
       </Route>
-
       <Route path="/flash">
         <FlashPage
           data={data}
@@ -60,19 +62,22 @@ const App = () => {
           setDifficulty={setDifficulty}
         />
       </Route>
-      {data.map((char) => {
-        return (
-          <Route key={char._id} path={`/${char._id}`} exact>
-            <CharacterPage
-              char={char}
-              editID={id}
-              setID={setID}
-              editing={editing}
-              setEdit={setEdit}
-            />
-          </Route>
-        );
-      })}
+      {data.length > 0 &&
+        data.map((char) => {
+          return (
+            <Route key={char._id} path={`/${char._id}`} exact>
+              <CharacterPage
+                char={char}
+                setFilteredData={setFilteredData}
+                getData={getData}
+                editID={id}
+                setID={setID}
+                editing={editing}
+                setEdit={setupEdit}
+              />
+            </Route>
+          );
+        })}
     </BrowserRouter>
   );
 };
