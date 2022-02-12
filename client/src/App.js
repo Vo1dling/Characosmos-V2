@@ -5,6 +5,8 @@ import HomePage from "./pages/HomePage/HomePage.pages";
 import FlashPage from "./pages/FlashCardsPage/FlashCardsPage.pages";
 import CreateEditPage from "./pages/CreateEditPage/CreateEditPage.pages";
 import CharacterPage from "./pages/CharacterPage/CharacterPage.pages";
+import LoginPage from "./pages/CreateEditPage/CreateEditPage.pages";
+import SignUpPage from "./pages/CharacterPage/CharacterPage.pages";
 import api from "./components/api/api.js";
 
 const App = () => {
@@ -53,6 +55,7 @@ const App = () => {
           editID={id}
           editing={editing}
           setEdit={setupEdit}
+          getData={getData}
         />
       </Route>
       <Route path="/flash">
@@ -68,7 +71,6 @@ const App = () => {
             <Route key={char._id} path={`/${char._id}`} exact>
               <CharacterPage
                 char={char}
-                setFilteredData={setFilteredData}
                 getData={getData}
                 editID={id}
                 setID={setID}
@@ -77,6 +79,12 @@ const App = () => {
               />
             </Route>
           );
+          <Route path="/login">
+            <LoginPage />
+          </Route>;
+          <Route path="/signup">
+            <SignUpPage />
+          </Route>;
         })}
     </BrowserRouter>
   );

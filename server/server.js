@@ -4,9 +4,9 @@ require("./db/mongoose");
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-const User = require("./models/user");
+const Page = require("./models/page");
 const { getReact } = require("./api/controllers/utils/utils");
-const apiRouter = require("./api/routes/api.routes");
+const apiRouter = require("./api/routers/api.router");
 
 const server = express();
 
@@ -21,4 +21,3 @@ const port = process.env.PORT || 5555;
 server.listen(port, () => {
   console.log(`Server is up and listening on ${port}`);
 });
-

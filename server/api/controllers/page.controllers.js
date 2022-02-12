@@ -31,6 +31,8 @@ const postPage = async (req, res) => {
     const page = await addPage(req.body);
 
     await page.save();
+    const user = req.user;
+    user.pages.push(page._id);
 
     res.status(201).send(page);
   } catch (e) {

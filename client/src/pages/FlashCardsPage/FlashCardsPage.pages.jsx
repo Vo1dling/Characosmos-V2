@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Card from "../../components/Card/Card.components";
 import "./FlashCardsPage.styles.css";
 import CustomButton from "../../components/CustomButton/CustomButton.components";

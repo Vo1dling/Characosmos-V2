@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import api from "../../components/api/api";
 import "./CharacterPage.styles.css";
-const CharacterPage = ({ char, setID, setEdit, getData, setFilteredData }) => {
+const CharacterPage = ({ char, setID, setEdit, getData }) => {
   const editbutton = () => {
     setID(char._id);
     setEdit(true);
@@ -11,7 +10,6 @@ const CharacterPage = ({ char, setID, setEdit, getData, setFilteredData }) => {
   const deleteItem = async () => {
     await api.delete(char._id);
     getData();
-    setFilteredData([]);
   };
 
   return (

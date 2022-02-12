@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import api from "../../components/api/api";
 import CustomInput from "../../components/CustomInput/CustomInput.components";
 import "./CreateEditPage.styles.css";
 import { Link } from "react-router-dom";
-const CreatePage = ({ editID, editing, setEdit }) => {
+const CreatePage = ({ editID, editing, setEdit, getData }) => {
   const nameRef = useRef("");
   const imageRef = useRef("");
   const originRef = useRef("");
@@ -71,6 +71,7 @@ const CreatePage = ({ editID, editing, setEdit }) => {
     } else {
       console.log("Creating...");
       const res = await api.post("/create", item);
+      getData();
     }
   };
   const setupEdit = async () => {
