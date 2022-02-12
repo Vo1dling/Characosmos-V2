@@ -62,7 +62,7 @@ const CreatePage = ({ editID, editing, setEdit, getData }) => {
     };
     if (editing === true) {
       try {
-        const res = await api.put(`/${editID}`, item);
+        await api.put(`/${editID}`, item);
         setEdit("false");
         console.log(editing);
       } catch (e) {
@@ -70,7 +70,7 @@ const CreatePage = ({ editID, editing, setEdit, getData }) => {
       }
     } else {
       console.log("Creating...");
-      const res = await api.post("/create", item);
+      await api.post("/create", item);
       getData();
     }
   };

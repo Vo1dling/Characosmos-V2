@@ -1,4 +1,5 @@
 const User = require("../../models/user");
+const jwt = require("jsonwebtoken");
 
 const postUser = async (req, res) => {
   const user = new User(req.body);
@@ -14,14 +15,23 @@ const postUser = async (req, res) => {
 };
 const login = async (req, res) => {
   try {
+    const { token } = req.body;
+    if (token) {
+      jwt.verify(token, process.env.SECRET_KEY);
+      const tokenUser = await User.findOne({ "tokens.token": token });
+      if (!tokenUser) {
+        return res.status(400).send();
+      } else return res.send({ user: tokenUser });
+    }
+
     const user = await User.findByCredentials(
       req.body.email,
       req.body.password
     );
-    const token = await user.generateAuthToken();
-    res.send({ user, token });
+    const genToken = await user.generateAuthToken();
+    res.send({ user, genToken });
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send(e.message);
   }
 };
 const logout = async (req, res) => {
