@@ -3,7 +3,7 @@ import api from "../../components/api/api";
 import CustomInput from "../../components/CustomInput/CustomInput.components";
 import "./CreateEditPage.styles.css";
 import { Link } from "react-router-dom";
-const CreatePage = ({ data, editID, editing, setEdit }) => {
+const CreatePage = ({ editID, editing, setEdit }) => {
   const nameRef = useRef("");
   const imageRef = useRef("");
   const originRef = useRef("");
@@ -22,6 +22,7 @@ const CreatePage = ({ data, editID, editing, setEdit }) => {
 
   useEffect(() => {
     setupEdit();
+
     // eslint-disable-next-line
   }, [editing]);
 
@@ -59,32 +60,37 @@ const CreatePage = ({ data, editID, editing, setEdit }) => {
       hardQ,
       hardA,
     };
-    if (editing === "true") {
-      await api.put(editID, item);
-      setEdit("false");
+    if (editing === true) {
+      try {
+        const res = await api.put(`/${editID}`, item);
+        setEdit("false");
+        console.log(editing);
+      } catch (e) {
+        console.error(e.response);
+      }
     } else {
-      console.log(item);
+      console.log("Creating...");
       const res = await api.post("/create", item);
-      console.log(res);
     }
   };
-  const setupEdit = () => {
-    if (editing === "true") {
-      nameRef.current.value = data[editID - 1].name;
-      imageRef.current.value = data[editID - 1].imageURL;
-      originRef.current.value = data[editID - 1].origin;
-      regionRef.current.value = data[editID - 1].region;
-      authorRef.current.value = data[editID - 1].author;
-      titleRef1.current.value = data[editID - 1].paragraph1Title;
-      contentRef1.current.value = data[editID - 1].paragraph1Content;
-      titleRef2.current.value = data[editID - 1].paragraph2Title;
-      contentRef2.current.value = data[editID - 1].paragraph2Content;
-      titleRef3.current.value = data[editID - 1].paragraph3Title;
-      contentRef3.current.value = data[editID - 1].paragraph3Content;
-      mediumQRef.current.value = data[editID - 1].normalQuestion;
-      mediumARef.current.value = data[editID - 1].normalAnswer;
-      hardQRef.current.value = data[editID - 1].hardQuestion;
-      hardARef.current.value = data[editID - 1].hardAnswer;
+  const setupEdit = async () => {
+    if (editing === true) {
+      const item = await api.get(`/${editID}`);
+      nameRef.current.value = item.data.name;
+      imageRef.current.value = item.data.imageURL;
+      originRef.current.value = item.data.origin;
+      regionRef.current.value = item.data.region;
+      authorRef.current.value = item.data.author;
+      titleRef1.current.value = item.data.title1;
+      contentRef1.current.value = item.data.content1;
+      titleRef2.current.value = item.data.title2;
+      contentRef2.current.value = item.data.content2;
+      titleRef3.current.value = item.data.title3 || "";
+      contentRef3.current.value = item.data.content3 || "";
+      mediumQRef.current.value = item.data.mediumQ;
+      mediumARef.current.value = item.data.mediumA;
+      hardQRef.current.value = item.data.hardQ;
+      hardARef.current.value = item.data.hardA;
     }
   };
 
@@ -193,7 +199,7 @@ const CreatePage = ({ data, editID, editing, setEdit }) => {
           ></CustomInput>
         </div>
         <Link to={editID} onClick={postItem} className="submit">
-          Post
+          {editing ? "Update " : "Post"}
         </Link>
       </div>
     </div>

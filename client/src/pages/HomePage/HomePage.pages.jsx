@@ -15,7 +15,7 @@ const HomePage = ({ filteredData, search }) => {
             <Link
               to={item._id.toString()}
               key={item._id}
-            >{`${item.name} (${item._id})`}</Link>
+            >{`${item.name} (${item.origin})`}</Link>
           );
         })}
       </div>

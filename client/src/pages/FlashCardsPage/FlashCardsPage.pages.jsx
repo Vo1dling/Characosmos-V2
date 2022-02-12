@@ -73,13 +73,13 @@ const FlashPage = (props) => {
       });
     } else if (props.currentDifficulty === "Medium") {
       props.data.forEach((item) => {
-        item.currentQuestion = item.normalQuestion;
-        item.currentAnswer = item.normalAnswer;
+        item.currentQuestion = item.mediumQ;
+        item.currentAnswer = item.mediumA;
       });
     } else if (props.currentDifficulty === "Hard") {
       props.data.forEach((item) => {
-        item.currentQuestion = `${item.hardQuestion} and what region are they from?`;
-        item.currentAnswer = `${item.hardAnswer} and they are from ${item.region}`;
+        item.currentQuestion = `${item.hardQ} and what region are they from?`;
+        item.currentAnswer = `${item.hardA} and they are from ${item.region}`;
       });
     }
   };

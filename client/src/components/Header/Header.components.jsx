@@ -4,15 +4,9 @@ import "./Header.styles.css";
 const Header = ({ setEdit }) => {
   return (
     <nav>
-      <Link onClick={setEdit("false")} to="/">
-        Home Page
-      </Link>
-      <Link onClick={setEdit("false")} to="/create">
-        Create/Edit Page
-      </Link>
-      <Link onClick={setEdit("false")} to="/flash">
-        Flash Cards
-      </Link>
+      <Link to="/">Home Page</Link>
+      <Link to="/create">Create/Edit Page</Link>
+      <Link to="/flash">Flash Cards</Link>
     </nav>
   );
 };
