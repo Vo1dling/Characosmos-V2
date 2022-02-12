@@ -1,7 +1,15 @@
 import React from "react";
 import "./CustomInput.styles.css";
 const CustomInput = (props) => {
-  const { type, onChange, placeHolder, inputRef, name, className } = props;
+  const {
+    type,
+    onChange,
+    placeHolder,
+    inputRef,
+    name,
+    className,
+    required = false,
+  } = props;
   if (type === "textarea")
     return (
       <textarea
@@ -23,6 +31,7 @@ const CustomInput = (props) => {
         placeholder={placeHolder}
         ref={inputRef}
         className={className}
+        required={required}
       />
     );
 };
