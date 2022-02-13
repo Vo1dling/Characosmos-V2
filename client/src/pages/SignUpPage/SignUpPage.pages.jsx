@@ -1,4 +1,5 @@
 import CustomInput from "../../components/CustomInput/CustomInput.components";
+import { Link } from "react-router-dom";
 import CustomButton from "../../components/CustomButton/CustomButton.components";
 import "./SignUpPage.styles.css";
 const SignUpPage = ({ onSignup, inputRefs }) => {
@@ -35,6 +36,9 @@ const SignUpPage = ({ onSignup, inputRefs }) => {
           />
         </div>
         <CustomButton type="submit" text="Signup" />
+        <Link className="login" to="/login">
+          Already have an account <span className="login-link"> Login </span>
+        </Link>
       </form>
     </div>
   );

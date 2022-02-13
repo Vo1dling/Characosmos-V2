@@ -1,6 +1,7 @@
 import CustomInput from "../../components/CustomInput/CustomInput.components";
 import CustomButton from "../../components/CustomButton/CustomButton.components";
 import "./LoginPage.styles.css";
+import { Link } from "react-router-dom";
 const LoginPage = ({ inputRefs, onLogin }) => {
   const { emailInputRef, passInputRef } = inputRefs;
   const handleOnFormSubmit = (e) => {
@@ -27,6 +28,9 @@ const LoginPage = ({ inputRefs, onLogin }) => {
           />
         </div>
         <CustomButton type="submit" text="Login" />
+        <Link className="signup" to="/signup">
+          Dont have an account <span className="signup-link"> Signup </span>
+        </Link>
       </form>
     </div>
   );
