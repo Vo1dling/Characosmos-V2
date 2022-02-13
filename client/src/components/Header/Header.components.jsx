@@ -5,7 +5,9 @@ const Header = ({ user, logout }) => {
   return (
     <nav>
       <Link to="/">Home Page</Link>
-      <Link to="/create">Create/Edit Page</Link>
+      {user.hasOwnProperty("name") && (
+        <Link to="/create">Create/Edit Page</Link>
+      )}
       <Link to="/flash">Flash Cards</Link>
       {!user.hasOwnProperty("name") && (
         <div className="account-buttons">

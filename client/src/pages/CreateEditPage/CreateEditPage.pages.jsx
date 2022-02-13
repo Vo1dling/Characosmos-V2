@@ -3,7 +3,7 @@ import api from "../../components/api/api";
 import CustomInput from "../../components/CustomInput/CustomInput.components";
 import "./CreateEditPage.styles.css";
 import { Link } from "react-router-dom";
-const CreatePage = ({ editID, editing, setEdit, getData }) => {
+const CreatePage = ({ editID, editing, setEdit, getData, currentUser }) => {
   const nameRef = useRef("");
   const imageRef = useRef("");
   const originRef = useRef("");
@@ -42,7 +42,8 @@ const CreatePage = ({ editID, editing, setEdit, getData }) => {
     const mediumA = mediumARef.current.value;
     const hardQ = hardQRef.current.value;
     const hardA = hardARef.current.value;
-
+    const creatorid = currentUser._id;
+    console.log(creatorid);
     const item = {
       name,
       imageURL,
@@ -59,6 +60,7 @@ const CreatePage = ({ editID, editing, setEdit, getData }) => {
       mediumA,
       hardQ,
       hardA,
+      creatorid,
     };
     if (editing === true) {
       try {

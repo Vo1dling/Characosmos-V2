@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import api from "../../components/api/api";
 import "./CharacterPage.styles.css";
-const CharacterPage = ({ char, setID, setEdit, getData }) => {
+const CharacterPage = ({ char, setID, setEdit, getData, currentUser }) => {
   const editbutton = () => {
     setID(char._id);
     setEdit(true);
@@ -11,7 +11,6 @@ const CharacterPage = ({ char, setID, setEdit, getData }) => {
     await api.delete(char._id);
     getData();
   };
-
   return (
     <div className="character-page">
       <div className="grid-container">
@@ -37,12 +36,18 @@ const CharacterPage = ({ char, setID, setEdit, getData }) => {
           <hr />
           <p className="para-content">{char.content3}</p>
         </div>
-        <Link onClick={editbutton} className="edit" to="/create">
-          Edit
-        </Link>
-        <Link onClick={deleteItem} className="delete" to="/">
-          Delete
-        </Link>
+        {currentUser.hasOwnProperty("name") &&
+          currentUser._id === char.creatorid && (
+            <Link onClick={editbutton} className="edit" to="/create">
+              Edit
+            </Link>
+          )}
+        {currentUser.hasOwnProperty("name") &&
+          currentUser._id === char.creatorid && (
+            <Link onClick={deleteItem} className="delete" to="/">
+              Delete
+            </Link>
+          )}
       </div>
     </div>
   );

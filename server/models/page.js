@@ -59,5 +59,8 @@ const Page = mongoose.model("Page", {
     type: String,
     required: true,
   },
+  creatorid: {
+    type: String,
+  },
 });
 module.exports = Page;

@@ -80,7 +80,7 @@ const App = () => {
         passInputRef.current,
         nameInputRef.current,
       ];
-      const res = await api.post("/users/login", {
+      const res = await api.post("/users", {
         email: emailInput.value || "",
         password: passInput.value || "",
         name: nameInput.value || "",
@@ -120,6 +120,7 @@ const App = () => {
           editing={editing}
           setEdit={setupEdit}
           getData={getData}
+          currentUser={currentUser}
         />
       </Route>
       <Route path="/flash">
@@ -140,6 +141,7 @@ const App = () => {
                 setID={setID}
                 editing={editing}
                 setEdit={setupEdit}
+                currentUser={currentUser}
               />
             </Route>
           );
