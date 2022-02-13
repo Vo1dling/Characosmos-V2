@@ -97,8 +97,9 @@ const App = () => {
   };
   const logout = async () => {
     try {
-      const res = await api.post("/users/logout");
-      console.log(res);
+      await api.post("/users/logout");
+      setUser({});
+      window.localStorage.setItem("token", "");
     } catch (e) {
       console.error(e.response);
     }
