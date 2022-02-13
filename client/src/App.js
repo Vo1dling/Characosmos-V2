@@ -90,8 +90,10 @@ const App = () => {
       window.localStorage.setItem("token", res.data.genToken);
       api.defaults.headers.common["Authorization"] =
         window.localStorage.getItem("token");
+      console.log(res);
     } catch (e) {
       console.error(e.response);
+      console.log("meow");
     }
   };
   const logout = async () => {

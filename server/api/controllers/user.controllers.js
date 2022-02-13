@@ -10,7 +10,7 @@ const postUser = async (req, res) => {
 
     res.status(201).send({ user, token });
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send(e.message);
   }
 };
 const login = async (req, res) => {
