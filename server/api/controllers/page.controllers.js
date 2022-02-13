@@ -59,7 +59,7 @@ const getPage = async (req, res) => {
 const editPage = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
+
     const page = await Page.findById(id);
     if (!page) throw createCustomError("Page not found", 404, "editPage Error");
     const newPage = req.body;

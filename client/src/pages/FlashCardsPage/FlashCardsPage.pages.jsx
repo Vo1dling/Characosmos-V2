@@ -69,7 +69,6 @@ const FlashPage = (props) => {
       props.data.forEach((item) => {
         item.currentQuestion = `What is ${item.name}'s origin world`;
         item.currentAnswer = item.origin;
-        console.log("works");
       });
     } else if (props.currentDifficulty === "Medium") {
       props.data.forEach((item) => {

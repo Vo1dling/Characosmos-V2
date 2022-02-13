@@ -64,12 +64,10 @@ const CreatePage = ({ editID, editing, setEdit, getData }) => {
       try {
         await api.put(`/${editID}`, item);
         setEdit("false");
-        console.log(editing);
       } catch (e) {
         console.error(e.response);
       }
     } else {
-      console.log("Creating...");
       await api.post("/create", item);
       getData();
     }

@@ -62,7 +62,7 @@ const App = () => {
         password: passInput.value || "",
         token: window.localStorage.getItem("token"),
       });
-      console.log(res);
+
       setUser(res.data.user);
       if (!window.localStorage.getItem("token")) {
         window.localStorage.setItem("token", res.data.genToken);
@@ -73,7 +73,6 @@ const App = () => {
       console.error(e.response);
     }
   };
-  console.log(currentUser);
   const onSignup = async () => {
     try {
       const [emailInput, passInput, nameInput] = [
@@ -86,7 +85,7 @@ const App = () => {
         password: passInput.value || "",
         name: nameInput.value || "",
       });
-      console.log(res);
+
       setUser(res.data.user);
       window.localStorage.setItem("token", res.data.genToken);
       api.defaults.headers.common["Authorization"] =

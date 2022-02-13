@@ -18,6 +18,4 @@ server.use(express.static(getReact()));
 
 const port = process.env.PORT || 5555;
 
-server.listen(port, () => {
-  console.log(`Server is up and listening on ${port}`);
-});
+server.listen(port, () => {});
