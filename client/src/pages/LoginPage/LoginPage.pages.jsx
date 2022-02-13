@@ -1,12 +1,18 @@
 import CustomInput from "../../components/CustomInput/CustomInput.components";
 import CustomButton from "../../components/CustomButton/CustomButton.components";
 import "./LoginPage.styles.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const LoginPage = ({ inputRefs, onLogin }) => {
   const { emailInputRef, passInputRef } = inputRefs;
-  const handleOnFormSubmit = (e) => {
-    e.preventDefault();
-    onLogin();
+  const history = useHistory();
+  const handleOnFormSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      await onLogin();
+      history.push("/");
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <div className="form-container" onSubmit={handleOnFormSubmit}>

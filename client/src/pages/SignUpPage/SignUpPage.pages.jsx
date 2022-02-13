@@ -1,12 +1,18 @@
 import CustomInput from "../../components/CustomInput/CustomInput.components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import CustomButton from "../../components/CustomButton/CustomButton.components";
 import "./SignUpPage.styles.css";
 const SignUpPage = ({ onSignup, inputRefs }) => {
   const { emailInputRef, passInputRef, nameInputRef } = inputRefs;
-  const handleOnFormSubmit = (e) => {
-    e.preventDefault();
-    onSignup();
+  const history = useHistory();
+  const handleOnFormSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      await onSignup();
+      history.push("/");
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <div className="form-container" onSubmit={handleOnFormSubmit}>
