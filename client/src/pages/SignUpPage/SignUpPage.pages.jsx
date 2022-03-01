@@ -36,6 +36,7 @@ const SignUpPage = ({ onSignup, inputRefs }) => {
         <div className="input-container">
           <label>Password</label>
           <CustomInput
+            type="password"
             inputRef={passInputRef}
             placeHolder="Enter Password..."
             required

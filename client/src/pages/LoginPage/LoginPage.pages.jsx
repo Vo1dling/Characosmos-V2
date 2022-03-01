@@ -28,6 +28,7 @@ const LoginPage = ({ inputRefs, onLogin }) => {
         <div className="input-container">
           <label>Password</label>
           <CustomInput
+            type="password"
             placeHolder="Enter Password..."
             required
             inputRef={passInputRef}

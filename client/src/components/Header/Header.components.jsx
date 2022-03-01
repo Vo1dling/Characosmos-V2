@@ -17,7 +17,7 @@ const Header = ({ user, logout }) => {
       )}
       {user.hasOwnProperty("name") && (
         <div className="account-buttons">
-          <p>Welcome {user.name}</p>
+          <p className="user">Welcome {user.name}</p>
           <Link onClick={logout} to="/">
             Logout
           </Link>
