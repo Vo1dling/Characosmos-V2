@@ -2,9 +2,9 @@ require("dotenv").config();
 require("./db/mongoose");
 
 const express = require("express");
-const path = require("path");
+// const path = require("path");
 const cors = require("cors");
-const Page = require("./models/page");
+// const Page = require("./models/page");
 const { getReact } = require("./api/controllers/utils/utils");
 const apiRouter = require("./api/routers/api.router");
 
@@ -18,4 +18,6 @@ server.use(express.static(getReact()));
 
 const port = process.env.PORT || 5555;
 
-server.listen(port, () => {});
+server.listen(port, () => {
+  console.log(`Server is up and listening on port ${port}`);
+});

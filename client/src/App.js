@@ -93,7 +93,6 @@ const App = () => {
       console.log(res);
     } catch (e) {
       console.error(e.response);
-      console.log("meow");
     }
   };
   const logout = async () => {
